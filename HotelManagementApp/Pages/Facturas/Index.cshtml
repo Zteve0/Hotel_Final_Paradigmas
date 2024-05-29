@@ -1,0 +1,31 @@
+@page
+@model HotelManagementApp.Pages.Facturas.IndexModel
+@{
+ViewData["Title"] = "Facturas";
+}
+
+<h1>Facturas</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Número de Factura</th>
+        <th>Total</th>
+        <th>Descuento</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var factura in Model.Facturas)
+    {
+    <tr>
+        <td>@factura.Id</td>
+        <td>@factura.GetTotalAmount()</td>
+        <td>@factura.Discount</td>
+        <td>
+            <a href="/Facturas/Details/@factura.Id" class="btn btn-primary">Ver Detalles</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>

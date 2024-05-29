@@ -1,0 +1,113 @@
+@page
+@model HotelManagementApp.Pages.Habitaciones.IndexModel
+@{
+    ViewData["Title"] = "Habitaciones";
+}
+<partial name="_ValidationScriptsPartial"></partial>
+<partial name="_ValidationSummary" model="ViewData.ModelState"></partial>
+
+<h1>Habitaciones</h1>
+
+<h2>Habitaciones Sencillas</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Piso</th>
+            <th>Tarifa por Noche</th>
+            <th>Ocupada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var habitacion in Model.SimpleRooms)
+        {
+            <tr>
+                <td>@habitacion.RoomNumber</td>
+                <td>@habitacion.Floor</td>
+                <td>@habitacion.NightlyRate</td>
+                <td>@habitacion.Occupied</td>
+                <td>
+                    @if(!habitacion.Occupied)
+                    {
+                    <a href="/Habitaciones/CheckIn/@habitacion.RoomNumber" class="btn btn-primary">Check In</a>
+                    }
+                    else
+                    {
+                    <a href="/Habitaciones/CheckOut/@habitacion.RoomNumber" class="btn btn-danger">Check Out</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Habitaciones Ejecutivas</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Piso</th>
+            <th>Tarifa por Noche</th>
+            <th>Ocupada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var habitacion in Model.ExecutiveRooms)
+        {
+            <tr>
+                <td>@habitacion.RoomNumber</td>
+                <td>@habitacion.Floor</td>
+                <td>@habitacion.NightlyRate</td>
+                <td>@habitacion.Occupied</td>
+                <td>
+                    @if(!habitacion.Occupied)
+                    {
+                    <a href="/Habitaciones/CheckIn/@habitacion.RoomNumber" class="btn btn-primary">Check In</a>
+                    }
+                    else
+                    {
+                    <a href="/Habitaciones/CheckOut/@habitacion.RoomNumber" class="btn btn-danger">Check Out</a>
+                    <a href="/Habitaciones/Gestion/@habitacion.RoomNumber" class="btn btn-secondary">Gestionar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Suites</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Piso</th>
+            <th>Tarifa por Noche</th>
+            <th>Ocupada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var habitacion in Model.Suites)
+        {
+            <tr>
+                <td>@habitacion.RoomNumber</td>
+                <td>@habitacion.Floor</td>
+                <td>@habitacion.NightlyRate</td>
+                <td>@habitacion.Occupied</td>
+                <td>
+                    @if(!habitacion.Occupied)
+                    {
+                    <a href="/Habitaciones/CheckIn/@habitacion.RoomNumber" class="btn btn-primary">Check In</a>
+                    }
+                    else
+                    {
+                    <a href="/Habitaciones/CheckOut/@habitacion.RoomNumber" class="btn btn-danger">Check Out</a>
+                    <a href="/Habitaciones/Gestion/@habitacion.RoomNumber" class="btn btn-secondary">Gestionar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

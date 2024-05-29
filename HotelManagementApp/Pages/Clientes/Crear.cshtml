@@ -1,0 +1,33 @@
+
+@page
+@model HotelManagementApp.Pages.Clientes.CrearModel
+@{
+    ViewData["Title"] = "Crear Cliente";
+}
+<partial name="_ValidationScriptsPartial"></partial>
+<partial name="_ValidationSummary" model="ViewData.ModelState"></partial>
+<h1>Crear Cliente</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Name">Nombre del Cliente</label>
+        <input type="text" class="form-control" id="Name" name="Name" asp-for="Name" required />
+    </div>
+    <div class="form-group">
+        <label for="IdType">Tipo de ID</label>
+        <input type="text" class="form-control" id="IdType" name="IdType" asp-for="IdType" required />
+    </div>
+    <div class="form-group">
+        <label for="IdNumber">Número de ID</label>
+        <input type="text" class="form-control" id="IdNumber" name="IdNumber" asp-for="IdNumber" required />
+    </div>
+    <div class="form-group">
+        <label for="Phone">Teléfono</label>
+        <input type="text" class="form-control" id="Phone" name="Phone" asp-for="Phone" required />
+    </div>
+    <div class="form-group">
+        <label for="LoyaltyCode">Código de Fidelidad</label>
+        <input type="text" class="form-control" id="LoyaltyCode" name="LoyaltyCode" asp-for="LoyaltyCode" />
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Cliente</button>
+</form>

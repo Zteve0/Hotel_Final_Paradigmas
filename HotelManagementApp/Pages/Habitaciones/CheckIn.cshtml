@@ -1,0 +1,51 @@
+@page "{id}"
+@model HotelManagementApp.Pages.Habitaciones.CheckInModel
+@{
+    ViewData["Title"] = "Check-In";
+}
+<partial name="_ValidationScriptsPartial"></partial>
+<partial name="_ValidationSummary" model="ViewData.ModelState"></partial>
+
+<h1>Check-In para Habitación @Model.RoomNumber</h1>
+
+<h2>Reservas</h2>
+@if (Model.Reservations != null && Model.Reservations.Any())
+{
+    <form method="post" asp-page-handler="CheckInReservation">
+        <div class="form-group">
+            <label for="ReservationId">Seleccionar Reserva</label>
+            <select class="form-control" id="ReservationId" name="ReservationId">
+                @foreach (var reservation in Model.Reservations)
+                {
+                    <option value="@reservation.ReservationNumber">
+                        @reservation.ReservedGuest.Name - @reservation.CheckInDate.ToShortDateString() a @reservation.CheckOutDate.ToShortDateString()
+                    </option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Check In con Reserva</button>
+    </form>
+}
+else
+{
+    <p>No hay reservas disponibles para esta habitación.</p>
+}
+
+<h2>Clientes</h2>
+<form method="post" asp-page-handler="CheckInCustomer">
+    <div class="form-group">
+        <label for="CustomerId">Seleccionar Cliente</label>
+        <select class="form-control" id="CustomerId" name="CustomerId">
+            @foreach (var customer in Model.Customers)
+            {
+                <option value="@customer.IdNumber">@customer.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="OutDate">Fecha de Salida</label>
+        <input type="date" class="form-control" id="OutDate" name="OutDate" asp-for="OutDate" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Check In con Cliente</button>
+</form>
+
